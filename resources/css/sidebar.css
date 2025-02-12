@@ -1,0 +1,12 @@
+aside {
+    scrollbar-color: var(--color-gray-400) var(--color-gray-900);
+}
+
+[data-sidebar-dropdown]:has(.sidebar-item-active),
+[data-sidebar-item] .sidebar-item-active {
+    @apply !text-indigo-300;
+}
+
+[data-sidebar-dropdown] .sidebar-item-active {
+    @apply border-l-2 !text-indigo-300/90;
+}

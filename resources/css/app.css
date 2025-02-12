@@ -1,0 +1,9 @@
+@import "datatables.net-dt/css/dataTables.dataTables.min.css";
+@import "tailwindcss";
+@import "./Montserrat.css";
+@import "./sidebar.css";
+@source "../views";
+
+html {
+    font-family: "Montserrat", sans-serif;
+}
