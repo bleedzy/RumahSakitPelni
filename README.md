@@ -1,7 +1,7 @@
 # SIM Layanan ISO 27001 Rumah Sakit Pelni
 
 ## Command Before Use
-copy the >.env.example then rename it to >.env
+copy the `.env.example` then rename it to `.env`
 then run:
 ```sh
 composer install
