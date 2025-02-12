@@ -1,6 +1,8 @@
 # SIM Layanan ISO 27001 Rumah Sakit Pelni
 
 ## Command Before Use
+copy the >.env.example then rename it to >.env
+then run:
 ```sh
 composer install
 npm install
@@ -9,7 +11,7 @@ php artisan migrate
 php artisan db:seed --class=UserSeeder
 ```
 
-then run
+then run:
 ```sh
 npm run dev
 ```
