@@ -25,6 +25,12 @@
                     },
                 ],
             });
+            // make add button
+            $('.dt-search').closest('.dt-layout-end').append(`
+                <a href="{{ route('user.create') }}">
+                    <button class="flex items-center h-[36px] px-4 rounded bg-blue-500 hover:bg-blue-600 border border-blue-700 text-white font-semibold cursor-pointer">Add User</button>
+                </a>
+            `);
         })
     </script>
     <div class="overflow-auto">
