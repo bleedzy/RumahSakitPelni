@@ -1,4 +1,5 @@
 # SIM Layanan ISO 27001 Rumah Sakit Pelni
+this project uses Laravel 11 which require PHP vesion 8.2 or above
 
 ## Command Before Use
 copy the `.env.example` then rename it to `.env`
