@@ -1,7 +1,6 @@
-# Project Name
-SIM Layanan ISO 27001 Rumah Sakit Pelni
+# SIM Layanan ISO 27001 Rumah Sakit Pelni
 
-# Command Before Use
+## Command Before Use
 ```sh
 composer install
 npm install
@@ -14,7 +13,7 @@ then run
 npm run dev
 ```
 
-# Command for Creating Model
+## Command for Creating Model
 ```sh
 php artisan make:model <folder_name>/<model_name> -msf
 ```
