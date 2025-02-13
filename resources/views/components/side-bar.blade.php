@@ -1,12 +1,10 @@
 <aside class="flex shrink-0 flex-col h-full bg-gray-800 w-80 text-white overflow-auto">
-    <div id="AppName" class="px-8 py-4 mt-2 text-xl font-bold leading-0">
-        <div class="-translate-y-3">
-            <div class="text-sm text-white/50 translate-y-2">SIM Layanan</div>
-            <div>
-                <span class="text-gray-300">Rumah Sakit</span> <span class="text-2xl text-amber-500">Pelni</span>
-            </div>
-            <div class="text-white/50 mt-1">ISO <span class="text-amber-500/80">27001</span></div>
+    <div id="AppName" class="px-8 py-4 mt-2 text-2xl font-bold">
+        <div class="h-4">
+            <span class="text-gray-300">Rumah Sakit</span> <span class="text-amber-500">Pelni</span>
         </div>
+        <div class="text-lg h-4 mt-1 text-white/70">SIM Layanan</div>
+        <div class="text-sm text-white/60 mt-1">ISO <span class="text-amber-500/60">27001</span></div>
     </div>
     <div data-sidebar-dropdown data-sidebar-item class="flex flex-col px-4 mt-2 capitalize gap-2 cursor-pointer opacity-0 transition-opacity duration-300">
         <button data-sidebar-dropdown-toggle class="flex text-left px-4 gap-2 z-1 bg-gray-800 font-semibold hover:bg-gray-700 cursor-pointer">

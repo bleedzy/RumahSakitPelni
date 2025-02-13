@@ -3,7 +3,7 @@
     <x-side-bar pageName="{{ $pageName }}"></x-side-bar>
 @endsection
 @section('header')
-    <h1 class="text-2xl font-bold">User List</h1>
+    <h1 class="font-bold text-4xl line-clamp-2">User List</h1>
 @endsection
 @section('content')
     <script type="module">
@@ -35,7 +35,7 @@
     </script>
     <div class="overflow-auto">
         <div class="px-8 border-gray-500 text-nowrap min-w-min">
-            <table id="DataTable">
+            <table id="DataTable" class="row-border">
                 <thead>
                     <tr>
                         <th>Name</th>

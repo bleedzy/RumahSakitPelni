@@ -3,7 +3,7 @@
     <x-side-bar pageName="{{ $pageName }}"></x-side-bar>
 @endsection
 @section('header')
-    <h1 class="font-bold text-4xl line-clamp-2">01.04 Daftar Dokumen Eksternal</h1>
+    <h1 class="font-bold text-3xl line-clamp-2">01.04 Daftar Dokumen Eksternal</h1>
 @endsection
 @section('content')
     <div class="overflow-auto">
