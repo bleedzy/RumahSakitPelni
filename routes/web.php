@@ -102,3 +102,55 @@ Route::prefix('permintaan_tindakan_koreksi')->name('02')->middleware(Authenticat
         })->name('.index');
     });
 });
+
+Route::prefix('audit_internal')->name('03')->middleware(Authenticate::class)->group(function () {
+    Route::prefix('form_daftar_audit_internal')->name('.01')->group(function () {
+        Route::get('/', function () {
+            return view('03.01_form_daftar_audit_internal', [
+                'pageName' => '03.01 Daftar Audit Internal'
+            ]);
+        })->name('.index');
+    });
+    Route::prefix('form_ptk_audit_internal')->name('.02')->group(function () {
+        Route::get('/', function () {
+            return view('03.02_form_ptk_audit_internal', [
+                'pageName' => '03.02 PTK Audit Internal'
+            ]);
+        })->name('.index');
+    });
+    Route::prefix('form_jadwal_tahunan_audit_internal')->name('.03')->group(function () {
+        Route::get('/', function () {
+            return view('03.03_form_jadwal_tahunan_audit_internal', [
+                'pageName' => '03.03 Jadwal Tahunan Audit Internal'
+            ]);
+        })->name('.index');
+    });
+    Route::prefix('form_jadwal_detail_audit_internal')->name('.04')->group(function () {
+        Route::get('/', function () {
+            return view('03.04_form_jadwal_detail_audit_internal', [
+                'pageName' => '03.04 Jadwal Detail Audit Internal'
+            ]);
+        })->name('.index');
+    });
+    Route::prefix('form_checklist_audit_internal')->name('.05')->group(function () {
+        Route::get('/', function () {
+            return view('03.05_form_checklist_audit_internal', [
+                'pageName' => '03.05 Checklist Audit Internal'
+            ]);
+        })->name('.index');
+    });
+    Route::prefix('form_laporan_audit_internal')->name('.06')->group(function () {
+        Route::get('/', function () {
+            return view('03.06_form_laporan_audit_internal', [
+                'pageName' => '03.06 Laporan Audit Internal'
+            ]);
+        })->name('.index');
+    });
+    Route::prefix('form_status_temuan_audit_internal')->name('.07')->group(function () {
+        Route::get('/', function () {
+            return view('03.07_form_status_temuan_audit_internal', [
+                'pageName' => '03.07 Status Temuan Audit Internal'
+            ]);
+        })->name('.index');
+    });
+});
