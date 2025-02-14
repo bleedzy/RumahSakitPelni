@@ -14,7 +14,7 @@
         <div class="my-auto py-16">
             <h1 class="text-5xl font-bold">Rumah Sakit <span class="text-amber-500">Pelni</span></h1>
             <div class="text-2xl font-bold text-white/80">SIM Layanan</div>
-            <div class="font-semibold text-white/70">ISO <span class="text-amber-500/70">270001</span></div>
+            <div class="font-semibold text-white/70">ISO <span class="text-amber-500/70">27001</span></div>
             <p class="mt-8 text-white/80">
                 Aliquip ut pariatur elit sit. Est do excepteur qui non enim deserunt. Elit pariatur sit dolor dolor incididunt laborum cupidatat. Consectetur do adipisicing culpa voluptate in. Non consequat commodo veniam culpa duis esse cillum reprehenderit exercitation consequat officia non.
                 <br><br>
@@ -26,7 +26,7 @@
         @csrf
         @method('get')
         <h1 class="text-3xl">Login</h1>
-        <label for="" class="mt-2">Username</label>
+        <label for="" class="mt-2">Name</label>
         <input name="name" type="text" placeholder="You can use your email too" required class="border-2 border-gray-500 py-2 px-3 rounded">
         <label for="" class="mt-2">Password</label>
         <input name="password" type="password" required class="border-2 border-gray-500 py-2 px-3 rounded">

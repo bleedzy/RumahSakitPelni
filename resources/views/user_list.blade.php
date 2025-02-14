@@ -12,7 +12,8 @@
                 serverSide: true,
                 responsive: true,
                 ajax: '{{ route('user.index') }}',
-                columns: [{
+                columns: [
+                    {
                         data: 'name'
                     },
                     {
