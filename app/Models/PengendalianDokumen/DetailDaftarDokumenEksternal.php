@@ -9,4 +9,5 @@ class DetailDaftarDokumenEksternal extends Model
 {
     /** @use HasFactory<\Database\Factories\PengendalianDokumen\DetailDaftarDokumenEksternalFactory> */
     use HasFactory;
+    public $timestamps = false;
 }
