@@ -33,9 +33,9 @@
             </svg>
         </button>
         <div data-sidebar-dropdown-items class="flex flex-col opacity-30 ml-10 mr-5 gap-2 border-l border-gray-500 max-h-0 overflow-hidden transition-all duration-200">
-            <a href="#" class="pl-2 text-sm text-white/70 hover:underline hover:text-white/90"><span class="font-bold">02.01</span> Permintaan Tindakan Koreksi</a>
-            <a href="#" class="pl-2 text-sm text-white/70 hover:underline hover:text-white/90"><span class="font-bold">02.02</span> Daftar Status PTK</a>
-            <a href="#" class="pl-2 text-sm text-white/70 hover:underline hover:text-white/90"><span class="font-bold">02.03</span> Penyelesaian PTK Bermasalah</a>
+            <a href="{{ route('02.01.index') }}" class="{{ $pageName == '02.01 Permintaan Tindakan Koreksi' ? 'sidebar-item-active' : '' }} pl-2 text-sm text-white/70 hover:underline hover:text-white/90"><span class="font-bold">02.01</span> Permintaan Tindakan Koreksi</a>
+            <a href="{{ route('02.02.index') }}" class="{{ $pageName == '02.02 Daftar Status PTK' ? 'sidebar-item-active' : '' }} pl-2 text-sm text-white/70 hover:underline hover:text-white/90"><span class="font-bold">02.02</span> Daftar Status PTK</a>
+            <a href="{{ route('02.03.index') }}" class="{{ $pageName == '02.03 Penyelesaian PTK Bermasalah' ? 'sidebar-item-active' : '' }} pl-2 text-sm text-white/70 hover:underline hover:text-white/90"><span class="font-bold">02.03</span> Penyelesaian PTK Bermasalah</a>
         </div>
     </div>
     <div data-sidebar-dropdown data-sidebar-item class="flex flex-col px-4 mt-2 capitalize gap-2 cursor-pointer opacity-0 transition-opacity duration-300">

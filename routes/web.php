@@ -78,3 +78,27 @@ Route::prefix('pengendalian_dokumen')->name('01')->middleware(Authenticate::clas
         })->name('.index');
     });
 });
+
+Route::prefix('permintaan_tindakan_koreksi')->name('02')->middleware(Authenticate::class)->group(function () {
+    Route::prefix('form_permintaan_tindakan_koreksi')->name('.01')->group(function () {
+        Route::get('/', function () {
+            return view('02.01_form_permintaan_tindakan_koreksi', [
+                'pageName' => '02.01 Permintaan Tindakan Koreksi'
+            ]);
+        })->name('.index');
+    });
+    Route::prefix('form_daftar_status_ptk')->name('.02')->group(function () {
+        Route::get('/', function () {
+            return view('02.02_form_daftar_status_ptk', [
+                'pageName' => '02.02 Daftar Status PTK'
+            ]);
+        })->name('.index');
+    });
+    Route::prefix('form_penyelesaian_ptk_bermasalah')->name('.03')->group(function () {
+        Route::get('/', function () {
+            return view('02.03_form_penyelesaian_ptk_bermasalah', [
+                'pageName' => '02.03 Penyelesaian PTK Bermasalah'
+            ]);
+        })->name('.index');
+    });
+});
