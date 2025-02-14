@@ -5,7 +5,7 @@ namespace App\Models\PermintaanTindakanKoreksi;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class form_penyelesaian_ptk_bermasalah extends Model
+class formPenyelesaianPtkBermasalah extends Model
 {
     use HasFactory;
 

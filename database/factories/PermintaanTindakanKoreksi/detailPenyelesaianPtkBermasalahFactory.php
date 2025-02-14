@@ -3,12 +3,12 @@
 namespace Database\Factories\PermintaanTindakanKoreksi;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\PermintaanTindakanKoreksi\detailPenyelesaianPtkBermasalah;
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\PermintaanTindakanKoreksi\detail_penyelesaian_ptk_bermasalah>
- */
 class detailPenyelesaianPtkBermasalahFactory extends Factory
 {
+    protected $model = detailPenyelesaianPtkBermasalah::class;
+
     /**
      * Define the model's default state.
      *
@@ -17,7 +17,10 @@ class detailPenyelesaianPtkBermasalahFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'id_form' => $this->faker->numberBetween(1, 20),
+            'no_rekaman_ptk' => $this->faker->uuid,
+            'tanggal_ptk' => $this->faker->date,
+            'keterangan' => $this->faker->text,
         ];
     }
 }

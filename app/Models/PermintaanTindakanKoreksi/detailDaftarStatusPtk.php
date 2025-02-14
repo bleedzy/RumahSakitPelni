@@ -5,7 +5,7 @@ namespace App\Models\PermintaanTindakanKoreksi;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class detail_daftar_status_ptk extends Model
+class detailDaftarStatusPtk extends Model
 {
     use HasFactory;
 

@@ -5,7 +5,7 @@ namespace App\Models\PermintaanTindakanKoreksi;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class form_permintaan_tindakan_koreksi extends Model
+class formPermintaanTindakanKoreksi extends Model
 {
     use HasFactory;
 

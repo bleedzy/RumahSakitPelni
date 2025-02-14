@@ -1,10 +1,10 @@
 <?php
 
-namespace Database\Seeders;
+namespace Database\Seeders\PermintaanTindakanKoreksi;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-
+use App\Models\PermintaanTindakanKoreksi\formPenyelesaianPtkBermasalah;
 class FormPenyelesaianPtkBermasalahSeeder extends Seeder
 {
     /**
@@ -12,6 +12,6 @@ class FormPenyelesaianPtkBermasalahSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        formPenyelesaianPtkBermasalah::factory()->count(20)->create();
     }
 }

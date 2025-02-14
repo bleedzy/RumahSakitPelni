@@ -1,10 +1,10 @@
 <?php
 
-namespace Database\Seeders;
+namespace Database\Seeders\PermintaanTindakanKoreksi;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-
+use App\Models\PermintaanTindakanKoreksi\detailDaftarStatusPtk;
 class DetailDaftarStatusPtkSeeder extends Seeder
 {
     /**
@@ -12,6 +12,6 @@ class DetailDaftarStatusPtkSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        detailDaftarStatusPtk::factory()->count(20)->create();
     }
 }

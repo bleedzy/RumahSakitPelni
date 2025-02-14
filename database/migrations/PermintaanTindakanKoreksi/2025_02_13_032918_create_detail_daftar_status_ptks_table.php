@@ -9,9 +9,9 @@ return new class extends Migration {
     {
         Schema::create('detail_daftar_status_ptks', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('form_id');
+            $table->unsignedBigInteger('id_form');
             $table->foreign('form_id')->references('id')->on('form_daftar_status_ptks')->onDelete('cascade');
-            $table->integer('no_rekaman_ptk');
+            $table->stirng('no_rekaman_ptk');
             $table->string('keterangan_ptk');
             $table->string('pic');
             $table->date('tanggal_mulai');
