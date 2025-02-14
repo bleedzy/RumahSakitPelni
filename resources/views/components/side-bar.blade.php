@@ -33,9 +33,9 @@
             </svg>
         </button>
         <div data-sidebar-dropdown-items class="flex flex-col opacity-30 ml-10 mr-5 gap-2 border-l border-gray-500 max-h-0 overflow-hidden transition-all duration-200">
-            <a href="#" class="pl-2 text-sm text-white/70 hover:underline hover:text-white/90"><span class="font-bold">02.01</span> Permintaan Tindakan Koreksi</a>
-            <a href="#" class="pl-2 text-sm text-white/70 hover:underline hover:text-white/90"><span class="font-bold">02.02</span> Daftar Status PTK</a>
-            <a href="#" class="pl-2 text-sm text-white/70 hover:underline hover:text-white/90"><span class="font-bold">02.03</span> Penyelesaian PTK Bermasalah</a>
+            <a href="{{ route('02.01.index') }}" class="{{ $pageName == '02.01 Permintaan Tindakan Koreksi' ? 'sidebar-item-active' : '' }} pl-2 text-sm text-white/70 hover:underline hover:text-white/90"><span class="font-bold">02.01</span> Permintaan Tindakan Koreksi</a>
+            <a href="{{ route('02.02.index') }}" class="{{ $pageName == '02.02 Daftar Status PTK' ? 'sidebar-item-active' : '' }} pl-2 text-sm text-white/70 hover:underline hover:text-white/90"><span class="font-bold">02.02</span> Daftar Status PTK</a>
+            <a href="{{ route('02.03.index') }}" class="{{ $pageName == '02.03 Penyelesaian PTK Bermasalah' ? 'sidebar-item-active' : '' }} pl-2 text-sm text-white/70 hover:underline hover:text-white/90"><span class="font-bold">02.03</span> Penyelesaian PTK Bermasalah</a>
         </div>
     </div>
     <div data-sidebar-dropdown data-sidebar-item class="flex flex-col px-4 mt-2 capitalize gap-2 cursor-pointer opacity-0 transition-opacity duration-300">
@@ -47,13 +47,13 @@
             </svg>
         </button>
         <div data-sidebar-dropdown-items class="flex flex-col opacity-30 ml-10 mr-5 gap-2 border-l border-gray-500 max-h-0 overflow-hidden transition-all duration-200">
-            <a href="#" class="{{ $pageName == '03.01 Daftar Auditor Internal' ? 'sidebar-item-active' : '' }} pl-2 text-sm text-white/70 hover:underline hover:text-white/90"><span class="font-bold">03.01</span> Daftar Auditor Internal</a>
-            <a href="#" class="{{ $pageName == '03.02 PTK Audit' ? 'sidebar-item-active' : '' }} pl-2 text-sm text-white/70 hover:underline hover:text-white/90"><span class="font-bold">03.02</span> PTK Audit</a>
-            <a href="#" class="{{ $pageName == '03.03 Jadwal Tahunan Audit Internal' ? 'sidebar-item-active' : '' }} pl-2 text-sm text-white/70 hover:underline hover:text-white/90"><span class="font-bold">03.03</span> Jadwal Tahunan Audit Internal</a>
-            <a href="#" class="{{ $pageName == '03.04 Jadwal Detail Audit Internal' ? 'sidebar-item-active' : '' }} pl-2 text-sm text-white/70 hover:underline hover:text-white/90"><span class="font-bold">03.04</span> Jadwal Detail Audit Internal</a>
-            <a href="#" class="{{ $pageName == '03.05 test' ? 'sidebar-item-active' : '' }} pl-2 text-sm text-white/70 hover:underline hover:text-white/90"><span class="font-bold">03.05</span> Checklist Audit Internal</a>
-            <a href="#" class="{{ $pageName == '03.06 test' ? 'sidebar-item-active' : '' }} pl-2 text-sm text-white/70 hover:underline hover:text-white/90"><span class="font-bold">03.06</span> Laporan Audit Internal</a>
-            <a href="#" class="{{ $pageName == '03.07 test' ? 'sidebar-item-active' : '' }} pl-2 text-sm text-white/70 hover:underline hover:text-white/90"><span class="font-bold">03.07</span> Status Temuan Audit Internal</a>
+            <a href="{{ route('03.01.index') }}" class="{{ $pageName == '03.01 Daftar Audit Internal' ? 'sidebar-item-active' : '' }} pl-2 text-sm text-white/70 hover:underline hover:text-white/90"><span class="font-bold">03.01</span> Daftar Audit Internal</a>
+            <a href="{{ route('03.02.index') }}" class="{{ $pageName == '03.02 PTK Audit Internal' ? 'sidebar-item-active' : '' }} pl-2 text-sm text-white/70 hover:underline hover:text-white/90"><span class="font-bold">03.02</span> PTK Audit Internal</a>
+            <a href="{{ route('03.03.index') }}" class="{{ $pageName == '03.03 Jadwal Tahunan Audit Internal' ? 'sidebar-item-active' : '' }} pl-2 text-sm text-white/70 hover:underline hover:text-white/90"><span class="font-bold">03.03</span> Jadwal Tahunan Audit Internal</a>
+            <a href="{{ route('03.04.index') }}" class="{{ $pageName == '03.04 Jadwal Detail Audit Internal' ? 'sidebar-item-active' : '' }} pl-2 text-sm text-white/70 hover:underline hover:text-white/90"><span class="font-bold">03.04</span> Jadwal Detail Audit Internal</a>
+            <a href="{{ route('03.05.index') }}" class="{{ $pageName == '03.05 Checklist Audit Internal' ? 'sidebar-item-active' : '' }} pl-2 text-sm text-white/70 hover:underline hover:text-white/90"><span class="font-bold">03.05</span> Checklist Audit Internal</a>
+            <a href="{{ route('03.06.index') }}" class="{{ $pageName == '03.06 Laporan Audit Internal' ? 'sidebar-item-active' : '' }} pl-2 text-sm text-white/70 hover:underline hover:text-white/90"><span class="font-bold">03.06</span> Laporan Audit Internal</a>
+            <a href="{{ route('03.07.index') }}" class="{{ $pageName == '03.07 Status Temuan Audit Internal' ? 'sidebar-item-active' : '' }} pl-2 text-sm text-white/70 hover:underline hover:text-white/90"><span class="font-bold">03.07</span> Status Temuan Audit Internal</a>
         </div>
     </div>
     <div data-sidebar-item class="flex px-4 mt-1 opacity-0 transition-opacity duration-200">
