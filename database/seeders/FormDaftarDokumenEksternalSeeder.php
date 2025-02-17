@@ -7,7 +7,7 @@ use Database\Factories\PengendalianDokumen\FormDaftarDokumenEksternalFactory;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class DaftarDokumenEksternalSeeder extends Seeder
+class FormDaftarDokumenEksternalSeeder extends Seeder
 {
     /**
      * Run the database seeds.

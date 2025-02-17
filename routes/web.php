@@ -8,6 +8,9 @@ use App\Http\Controllers\PengendalianDokumen\PerjanjianKerahasiaanController;
 use App\Http\Controllers\PengendalianDokumen\SerahterimaDokumenRekamanController;
 use App\Http\Controllers\PengendalianDokumen\SuratPernyataanKerahasiaanController;
 use App\Http\Controllers\PengendalianDokumen\UsulanPerubahanDokumenController;
+use App\Http\Controllers\PermintaanTindakanKoreksi\formPermintaanTindakanKoreksiController;
+use App\Http\Controllers\PermintaanTindakanKoreksi\formPenyelesaianPtkBermasalahController;
+use App\Http\Controllers\PermintaanTindakanKoreksi\formDaftarStatusPtkController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\Authenticate;
 use Illuminate\Support\Facades\Route;
@@ -30,31 +33,13 @@ Route::prefix('pengendalian_dokumen')->name('01.')->middleware(Authenticate::cla
     Route::resource('pemusnahan_dokumen_rekaman', PemusnahanDokumenRekamanController::class, ['names' => '07']);
     Route::resource('surat_pernyataan_kerahasiaan', SuratPernyataanKerahasiaanController::class, ['names' => '08']);
     Route::resource('perjanjian_kerahasiaan', PerjanjianKerahasiaanController::class, ['names' => '09']);
-    Route::resource('laporan_pengkajian_dokumen_rekaman', LaporanPengkajianDokumenRekamanController::class, ['names' => '10']);
+    Route::resource('laporan_pengkajian_dokumen', LaporanPengkajianDokumenRekamanController::class, ['names' => '10']);
 });
 
-Route::prefix('permintaan_tindakan_koreksi')->name('02')->middleware(Authenticate::class)->group(function () {
-    Route::prefix('form_permintaan_tindakan_koreksi')->name('.01')->group(function () {
-        Route::get('/', function () {
-            return view('02.01_form_permintaan_tindakan_koreksi', [
-                'pageName' => '02.01 Permintaan Tindakan Koreksi'
-            ]);
-        })->name('.index');
-    });
-    Route::prefix('form_daftar_status_ptk')->name('.02')->group(function () {
-        Route::get('/', function () {
-            return view('02.02_form_daftar_status_ptk', [
-                'pageName' => '02.02 Daftar Status PTK'
-            ]);
-        })->name('.index');
-    });
-    Route::prefix('form_penyelesaian_ptk_bermasalah')->name('.03')->group(function () {
-        Route::get('/', function () {
-            return view('02.03_form_penyelesaian_ptk_bermasalah', [
-                'pageName' => '02.03 Penyelesaian PTK Bermasalah'
-            ]);
-        })->name('.index');
-    });
+Route::prefix('permintaan_tindakan_koreksi')->name('02.')->middleware(Authenticate::class)->group(function () {
+    Route::resource('form_permintaan_tindakan_koreksi', formPermintaanTindakanKoreksiController::class, ['names' => '01']);
+    Route::resource('form_daftar_status_ptk', formDaftarStatusPtkController::class, ['names' => '02']);
+    Route::resource('form_penyelesaian_ptk_bermasalah', formPenyelesaianPtkBermasalahController::class, ['names' => '03']);
 });
 
 Route::prefix('audit_internal')->name('03')->middleware(Authenticate::class)->group(function () {
