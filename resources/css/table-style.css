@@ -1,0 +1,26 @@
+.table-style td {
+    @apply border-b-2 p-2
+}
+
+.table-style th {
+    @apply border-b-2 p-2
+}
+
+.table-style thead tr {
+    @apply bg-gray-700 text-white
+}
+
+.table-style tbody tr:nth-child(odd){
+    @apply bg-gray-50
+}
+
+.table-style tbody tr:nth-child(even){
+    @apply bg-gray-300
+}
+
+/* .table-style td {
+    @apply py-2
+} */
+/* .table-style input {
+    @apply p-2
+} */

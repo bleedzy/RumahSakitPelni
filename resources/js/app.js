@@ -5,3 +5,9 @@ import 'datatables.net';
 import 'datatables.net-responsive';
 import Swal from 'sweetalert2';
 window.Swal = Swal;
+
+$(() => {
+    setTimeout(() => {
+        $('main').removeClass('opacity-0');
+    }, 150);
+})
