@@ -17,6 +17,7 @@
     "dependencies": {
         "datatables.net-dt": "^2.2.2",
         "datatables.net-responsive": "^3.0.4",
-        "jquery": "^3.7.1"
+        "jquery": "^3.7.1",
+        "sweetalert2": "^11.16.1"
     }
 }

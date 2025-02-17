@@ -1,0 +1,30 @@
+<?php
+
+namespace Database\Factories\PermintaanTindakanKoreksi;
+
+use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\PermintaanTindakanKoreksi\detailDaftarStatusPtk;
+
+class detailDaftarStatusPtkFactory extends Factory
+{
+    protected $model = detailDaftarStatusPtk::class;
+
+    /**
+     * Define the model's default state.
+     *
+     * @return array<string, mixed>
+     */
+    public function definition(): array
+    {
+        return [
+            'id_form' => $this->faker->numberBetween(1, 20),
+            'no_rekaman_ptk' => $this->faker->uuid,
+            'keterangan_ptk' => $this->faker->text,
+            'pic' => $this->faker->name,
+            'tanggal_mulai' => $this->faker->date,
+            'tanggal_target_selesai' => $this->faker->date,
+            'tanggal_selesai' => $this->faker->optional()->date,
+            'hasil' => $this->faker->text,
+        ];
+    }
+}

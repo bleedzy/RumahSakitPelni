@@ -9,7 +9,7 @@
     @vite(['resources/css/app.css', 'resources/js/sidebar_handler.js', 'resources/js/app.js'])
 </head>
 
-<body class="flex max-w-screen h-screen max-h-screen bg-gray-50 bg-cover bg-center" style="background-image: radial-gradient(rgba(255,255,255,0.95),rgba(255,255,255,0.95)), url({{ asset('images/hospital.jpg') }})">
+<body class="flex max-w-screen h-screen max-h-screen bg-gray-50 bg-cover bg-center" style="background-image: radial-gradient(rgba(255,255,255,0.92),rgba(255,255,255,0.92)), url({{ asset('images/hospital.jpg') }})">
     @yield('sidebar')
     <div class="flex flex-col w-full overflow-auto">
         <header class="flex px-8 shrink-0 border-b border-gray-400 h-24 items-center">
@@ -25,7 +25,7 @@
             <div class="mx-2">|</div>
             <a href="{{ route('auth.logout') }}" class="hover:underline">Logout</a>
         </header>
-        <main>
+        <main class="opacity-0 transition-opacity duration-200">
             @yield('content')
         </main>
     </div>
