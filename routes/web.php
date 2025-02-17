@@ -65,3 +65,21 @@ Route::prefix('pengendalian_dokumen')->name('01')->group(function (){
         })->name('.index');
     });
 });
+
+Route::prefix('kepatuhan_peraturan')->name('05')->group(function (){
+    Route::prefix('daftar_peraturan_keamanan_informasi')->name('.01')->group(function (){
+        Route::get('/', function () {
+            return view('05.01_daftar_peraturan_keamanan_informasi', [
+                'pageName' => '05.01 Daftar Peraturan Keamanan Informasi'
+            ]);
+        })->name('.index');
+    });
+
+    Route::prefix('daftar_pemenuhan_peraturan')->name('.02')->group(function (){
+        Route::get('/', function () {
+            return view('05.02_daftar_pemenuhan_peraturan', [
+                'pageName' => '05.02 Daftar Pemenuhan Peraturan'
+            ]);
+        })->name('.index');
+    });
+});
