@@ -2,6 +2,7 @@
 @import "tailwindcss";
 @import "./Montserrat.css";
 @import "./sidebar.css";
+@import "./table-style.css";
 @source "../views";
 
 html {

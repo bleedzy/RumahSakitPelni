@@ -49,7 +49,9 @@ class DaftarDokumenEksternalController extends Controller
     }
 
     public function create(){
-
+        return view('01.04_create', [
+            'pageName' => '01.04 Daftar Dokumen Eksternal'
+        ]);
     }
 
     public function store(Request $id){

@@ -48,15 +48,16 @@
 
             // button for add new document, you may want to change the route inside it
             $('.dt-search').closest('.dt-layout-end').append(`
-                <a href="{{ route('01.04.create') }}">
-                    <button class="flex items-center h-[36px] px-4 rounded bg-blue-500 hover:bg-blue-600 border border-blue-700 text-white font-semibold cursor-pointer">Add New Document</button>
+                <a href="{{ route('01.04.create') }}" class="flex items-center h-9 px-4 rounded bg-blue-500 hover:bg-blue-600 border border-blue-700 text-white font-semibold cursor-pointer">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-[17px] mr-1"><path d="M11 11V7H13V11H17V13H13V17H11V13H7V11H11ZM12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22ZM12 20C16.4183 20 20 16.4183 20 12C20 7.58172 16.4183 4 12 4C7.58172 4 4 7.58172 4 12C4 16.4183 7.58172 20 12 20Z"></path></svg>
+                    Add New Document
                 </a>
            `);
 
             // button for sort by newest and oldest
             $('.dt-length').closest('.dt-layout-start').append(`
-                <button id="sortNewest" class="flex items-center h-[36px] px-4 rounded bg-gray-200 hover:bg-gray-500 hover:text-white border border-gray-700 font-semibold cursor-pointer">Newest</button>
-                <button id="sortOldest" class="flex items-center h-[36px] px-4 rounded bg-gray-200 hover:bg-gray-500 hover:text-white border border-gray-700 font-semibold cursor-pointer">Oldest</button>
+                <button id="sortNewest" class="flex items-center h-9 px-4 rounded bg-gray-200 hover:bg-gray-500 hover:text-white border border-gray-700 font-semibold cursor-pointer">Newest</button>
+                <button id="sortOldest" class="flex items-center h-9 px-4 rounded bg-gray-200 hover:bg-gray-500 hover:text-white border border-gray-700 font-semibold cursor-pointer">Oldest</button>
             `);
             $('#sortNewest').on('click', function() {
                 $table.order(0, 'desc').draw();
