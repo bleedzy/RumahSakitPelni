@@ -5,8 +5,8 @@ namespace App\Models\AuditInternal;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class detail_laporan_audit_internal extends Model
+class formChecklistAuditInternal extends Model
 {
-    /** @use HasFactory<\Database\Factories\AuditInternal\detailLaporanAuditInternalFactory> */
+    /** @use HasFactory<\Database\Factories\AuditInternal\formChecklistAuditInternalFactory> */
     use HasFactory;
 }

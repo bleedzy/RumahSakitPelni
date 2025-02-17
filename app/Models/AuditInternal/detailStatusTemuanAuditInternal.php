@@ -5,8 +5,8 @@ namespace App\Models\AuditInternal;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class form_jadwal_detail_audit_internal extends Model
+class detailStatusTemuanAuditInternal extends Model
 {
-    /** @use HasFactory<\Database\Factories\AuditInternal\formJadwalDetailAuditInternalFactory> */
+    /** @use HasFactory<\Database\Factories\AuditInternal\detailStatusTemuanAuditInternalFactory> */
     use HasFactory;
 }
