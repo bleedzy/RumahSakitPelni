@@ -9,7 +9,7 @@ class formPtkAuditInternal extends Model
 {
     use HasFactory;
 
-    protected $table = 'form_ptk_audit_internal';
+    protected $table = 'form_ptk_audit_internals';
 
     protected $fillable = [
         'no_rekaman_ptk',

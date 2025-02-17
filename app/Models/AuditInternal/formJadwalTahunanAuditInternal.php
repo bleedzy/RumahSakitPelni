@@ -9,7 +9,7 @@ class formJadwalTahunanAuditInternal extends Model
 {
     use HasFactory;
 
-    protected $table = 'form_jadwal_tahunan_audit_internal';
+    protected $table = 'form_jadwal_tahunan_audit_internals';
 
     protected $fillable = [
         'no_rekaman_dokumen',
