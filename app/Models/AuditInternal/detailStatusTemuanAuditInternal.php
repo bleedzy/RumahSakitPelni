@@ -9,7 +9,7 @@ class detailStatusTemuanAuditInternal extends Model
 {
     use HasFactory;
 
-    protected $table = 'detail_status_temuan_audit_internal';
+    protected $table = 'detail_status_temuan_audit_internals';
 
     protected $fillable = [
         'id_form',

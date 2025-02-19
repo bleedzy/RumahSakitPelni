@@ -9,7 +9,7 @@ class detailDaftarAuditInternal extends Model
 {
     use HasFactory;
 
-    protected $table = 'detail_daftar_auditor_internals';
+    protected $table = 'detail_daftar_audit_internals';
 
     protected $fillable = [
         'id_form',

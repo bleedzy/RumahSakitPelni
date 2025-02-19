@@ -17,7 +17,7 @@ class detailPenyelesaianPtkBermasalahFactory extends Factory
     public function definition(): array
     {
         return [
-            'id_form' => $this->faker->numberBetween(1, 20),
+            'id_form' => \App\Models\PermintaanTindakanKoreksi\formPenyelesaianPtkBermasalah::factory(),
             'no_rekaman_ptk' => $this->faker->uuid,
             'tanggal_ptk' => $this->faker->date,
             'keterangan' => $this->faker->text,

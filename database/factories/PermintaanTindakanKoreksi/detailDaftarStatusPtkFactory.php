@@ -17,7 +17,7 @@ class detailDaftarStatusPtkFactory extends Factory
     public function definition(): array
     {
         return [
-            'id_form' => $this->faker->numberBetween(1, 20),
+            'id_form' => \App\Models\PermintaanTindakanKoreksi\formDaftarStatusPtk::factory(),
             'no_rekaman_ptk' => $this->faker->uuid,
             'keterangan_ptk' => $this->faker->text,
             'pic' => $this->faker->name,
