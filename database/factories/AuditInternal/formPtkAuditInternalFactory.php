@@ -17,7 +17,7 @@ class formPtkAuditInternalFactory extends Factory
     public function definition(): array
     {
         return [
-            'no_rekaman_ptk' => $this->faker->uuid,
+            'no_rekaman_ptk' => $this->fake()->regexify("[A-Z]{3}") . '-' . fake()->regexify("[0-9]{5}"),
             'unit_kerja' => $this->faker->company,
             'tanggal_audit' => $this->faker->date,
             'nama_auditor' => $this->faker->name,
@@ -37,10 +37,9 @@ class formPtkAuditInternalFactory extends Factory
             'no_ptk_baru' => $this->faker->word,
             'nama_verifier' => $this->faker->name,
             'tanggal_verifikasi' => $this->faker->date,
-            'is_signed' => $this->faker->boolean,
             'signed_at' => $this->faker->date,
-            'document_scan' => $this->faker->word,
-            'created_by' => $this->faker->randomDigitNotNull,
+            'document_scan' => $this->faker->url,
+            'created_by' => 1,
             'created_at' => $this->faker->dateTime,
         ];
     }

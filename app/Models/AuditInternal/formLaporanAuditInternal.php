@@ -17,7 +17,6 @@ class formLaporanAuditInternal extends Model
         'rekomendasi_pelaksanaan_audit_selanjutnya',
         'nama_lead_auditor',
         'nama_vice_president',
-        'is_signed',
         'signed_at',
         'document_scan',
         'created_by',
@@ -29,7 +28,6 @@ class formLaporanAuditInternal extends Model
     protected $casts = [
         'temuan_belum_selesai' => 'json',
         'rekomendasi_pelaksanaan_audit_selanjutnya' => 'json',
-        'is_signed' => 'boolean',
         'signed_at' => 'date',
         'created_at' => 'datetime',
     ];

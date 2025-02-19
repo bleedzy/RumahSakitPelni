@@ -16,7 +16,6 @@ class formJadwalTahunanAuditInternal extends Model
         'periode',
         'nama_lead_auditor',
         'nama_vice_president',
-        'is_signed',
         'signed_at',
         'document_scan',
         'created_by',
@@ -26,7 +25,6 @@ class formJadwalTahunanAuditInternal extends Model
     public $timestamps = false;
 
     protected $casts = [
-        'is_signed' => 'boolean',
         'signed_at' => 'date',
         'created_at' => 'datetime',
     ];

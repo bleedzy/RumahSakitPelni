@@ -15,7 +15,6 @@ class formDaftarAuditInternal extends Model
         'no_rekaman_dokumen',
         'nama_lead_auditor',
         'nama_direktur_utama',
-        'is_signed',
         'signed_at',
         'document_scan',
         'created_by',
@@ -25,7 +24,6 @@ class formDaftarAuditInternal extends Model
     public $timestamps = false;
 
     protected $casts = [
-        'is_signed' => 'boolean',
         'signed_at' => 'date',
         'created_at' => 'datetime',
     ];

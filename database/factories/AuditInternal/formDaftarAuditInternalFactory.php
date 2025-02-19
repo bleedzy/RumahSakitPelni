@@ -17,13 +17,12 @@ class formDaftarAuditInternalFactory extends Factory
     public function definition(): array
     {
         return [
-            'no_rekaman_dokumen' => $this->faker->uuid,
+            'no_rekaman_dokumen' => $this->fake()->regexify("[A-Z]{3}") . '-' . fake()->regexify("[0-9]{5}"),
             'nama_lead_auditor' => $this->faker->name,
             'nama_direktur_utama' => $this->faker->name,
-            'is_signed' => $this->faker->boolean,
             'signed_at' => $this->faker->date,
-            'document_scan' => $this->faker->word,
-            'created_by' => $this->faker->randomDigitNotNull,
+            'document_scan' => $this->faker->url,
+            'created_by' => 1,
             'created_at' => $this->faker->dateTime,
         ];
     }

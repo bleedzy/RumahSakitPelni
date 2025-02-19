@@ -17,7 +17,6 @@ class formChecklistAuditInternal extends Model
         'tanggal_audit',
         'nama_auditor',
         'nama_lead_auditor',
-        'is_signed',
         'signed_at',
         'document_scan',
         'created_by',
@@ -27,7 +26,6 @@ class formChecklistAuditInternal extends Model
     public $timestamps = false;
 
     protected $casts = [
-        'is_signed' => 'boolean',
         'signed_at' => 'date',
         'created_at' => 'datetime',
     ];

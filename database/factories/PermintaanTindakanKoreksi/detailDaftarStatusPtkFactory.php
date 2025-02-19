@@ -18,7 +18,7 @@ class detailDaftarStatusPtkFactory extends Factory
     {
         return [
             'id_form' => \App\Models\PermintaanTindakanKoreksi\formDaftarStatusPtk::factory(),
-            'no_rekaman_ptk' => $this->faker->uuid,
+            'no_rekaman_ptk' => $this->fake()->regexify("[A-Z]{3}") . '-' . fake()->regexify("[0-9]{5}"),
             'keterangan_ptk' => $this->faker->text,
             'pic' => $this->faker->name,
             'tanggal_mulai' => $this->faker->date,

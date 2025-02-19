@@ -19,7 +19,7 @@ class detailStatusTemuanAuditInternalFactory extends Factory
         return [
             'id_form' => \App\Models\AuditInternal\formStatusTemuanAuditInternal::factory(),
             'tanggal' => $this->faker->date,
-            'no_rekaman_ptka' => $this->faker->word,
+            'no_rekaman_ptka' => $this->fake()->regexify("[A-Z]{3}") . '-' . fake()->regexify("[0-9]{5}"),
             'uraian_ketidak_sesuaian_audit' => $this->faker->text,
             'pasal' => $this->faker->word,
             'status' => $this->faker->randomElement(['major', 'minor', 'rekomendasi']),

@@ -32,7 +32,6 @@ class formPtkAuditInternal extends Model
         'no_ptk_baru',
         'nama_verifier',
         'tanggal_verifikasi',
-        'is_signed',
         'signed_at',
         'document_scan',
         'created_by',
@@ -44,7 +43,6 @@ class formPtkAuditInternal extends Model
     protected $casts = [
         'tingkat_ketidaksesuaian' => 'string',
         'keputusan' => 'boolean',
-        'is_signed' => 'boolean',
         'signed_at' => 'date',
         'created_at' => 'datetime',
     ];
