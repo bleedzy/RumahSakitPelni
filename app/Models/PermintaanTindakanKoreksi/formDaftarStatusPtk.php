@@ -4,6 +4,7 @@ namespace App\Models\PermintaanTindakanKoreksi;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\User;
 
 class formDaftarStatusPtk extends Model
 {
@@ -19,4 +20,8 @@ class formDaftarStatusPtk extends Model
         'document_scan',
         'created_by'
     ];
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'created_by');
+    }
 }

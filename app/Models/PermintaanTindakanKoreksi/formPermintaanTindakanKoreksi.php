@@ -4,7 +4,7 @@ namespace App\Models\PermintaanTindakanKoreksi;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
+use app\Models\User;
 class formPermintaanTindakanKoreksi extends Model
 {
     use HasFactory;
@@ -33,4 +33,8 @@ class formPermintaanTindakanKoreksi extends Model
         'document_scan',
         'created_by'
     ];
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'created_by');
+    }
 }

@@ -36,16 +36,13 @@
                     data: 'tanggal_penyelesaian'
                 },
                 {
-                    data: 'is_signed'
-                },
-                {
                     data: 'signed_at'
                 },
                 {
                     data: 'document_scan'
                 },
                 {
-                    data: 'created_by'
+                    data: 'user.name',
                 }
             ];
 
@@ -103,6 +100,74 @@
 
             // draw the table
             $table.order(0, 'desc').draw();
+
+            // delete function
+            $table.on('click', '[data-delete-id]', function() {
+                let $idToDelete = $(this).attr('data-delete-id');
+                Swal.fire({
+                    title: "Are you sure?",
+                    text: "You won't be able to revert this!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#d33",
+                    cancelButtonColor: "#3085d6",
+                    confirmButtonText: "Yes, delete it!",
+                    heightAuto: false
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        Swal.fire({
+                            title: "Last warning!",
+                            icon: "warning",
+                            html: 'Type "<span class="font-bold">confirm deletion</span>" to delete',
+                            input: "text",
+                            inputAttributes: {
+                                autocomplete: 'off'
+                            },
+                            showCancelButton: true,
+                            confirmButtonColor: "#d33",
+                            cancelButtonColor: "#3085d6",
+                            confirmButtonText: "Confirm",
+                            heightAuto: false
+                        }).then((result2) => {
+                            if (result2.isConfirmed) {
+                                if (result2.value != 'confirm deletion') {
+                                    Swal.fire({
+                                        title: "Deletion Failed!",
+                                        text: "Wrong confirmation text!",
+                                        icon: 'error',
+                                        heightAuto: false
+                                    })
+                                } else {
+                                    $.ajax({
+                                        type: "delete",
+                                        url: "{{ route('02.01.destroy', '') }}/" + $idToDelete,
+                                        data: {
+                                            _token: "{{ csrf_token() }}",
+                                        },
+                                        success: function(response) {
+                                            $table.draw();
+                                            Swal.fire({
+                                                title: "Deleted!",
+                                                text: "Document has been deleted.",
+                                                icon: "success",
+                                                heightAuto: false
+                                            });
+                                        },
+                                        error: function(response) {
+                                            Swal.fire({
+                                                title: "Deletion Failed!",
+                                                text: response.error ?? 'something wrong',
+                                                icon: 'error',
+                                                heightAuto: false
+                                            })
+                                        }
+                                    });
+                                }
+                            }
+                        });
+                    }
+                });
+            });
         })
     </script>
     <div class="overflow-auto">
@@ -119,7 +184,6 @@
                         <th>Nama Penerima</th>
                         <th>Nama Vice President</th>
                         <th>Tanggal Penyelesaian</th>
-                        <th>Is Signed</th>
                         <th>Signed At</th>
                         <th>Document Scan</th>
                         <th>Created By</th>
@@ -138,7 +202,6 @@
                         <th>Nama Penerima</th>
                         <th>Nama Vice President</th>
                         <th>Tanggal Penyelesaian</th>
-                        <th>Is Signed</th>
                         <th>Signed At</th>
                         <th>Document Scan</th>
                         <th>Created By</th>
