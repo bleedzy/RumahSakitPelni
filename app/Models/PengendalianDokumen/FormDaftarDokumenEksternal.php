@@ -16,10 +16,16 @@ class FormDaftarDokumenEksternal extends Model
         'nama_divisi',
         'nama_document_control',
         'nama_vice_president',
-        'created_by'
+        'created_by',
+        'updated_by',
+        'updated_at'
     ];
 
     public function createdBy () {
         return $this->belongsTo(User::class, 'created_by');
+    }
+
+    public function details () {
+        return $this->hasMany(DetailDaftarDokumenEksternal::class, 'id_form');
     }
 }
