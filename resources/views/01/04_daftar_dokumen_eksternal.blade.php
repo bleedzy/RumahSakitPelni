@@ -34,7 +34,7 @@
             // initiate DataTable
             $table = $table.DataTable({
                 serverSide: true,
-                ajax: '{{ route('01.04.index') }}',
+                ajax: "{{ route('01.04.index') }}",
                 deferLoading: false,
                 columns: [{
                     data: "id",

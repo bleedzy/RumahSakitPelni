@@ -53,6 +53,7 @@
             <table id="tableDetail" class="table-style">
                 <thead>
                     <tr>
+                        <th>#</th>
                         <th>Tanggal</th>
                         <th>No Dokumen</th>
                         <th class="text-nowrap">Nama Dokumen</th>
@@ -68,7 +69,7 @@
                 </tbody>
                 <tfoot>
                     <tr>
-                        <th colspan="9" class="text-start font-normal"><button type="button" data-modal-toggle="modalFormAddDetail" class="px-4 py-1 rounded bg-blue-500 hover:bg-blue-700 text-white cursor-pointer">Add Row</button></th>
+                        <th colspan="10" class="text-start font-normal"><button type="button" data-modal-toggle="modalFormAddDetail" class="px-4 py-1 rounded bg-blue-500 hover:bg-blue-700 text-white cursor-pointer">Add Row</button></th>
                     </tr>
                 </tfoot>
             </table>
@@ -107,8 +108,8 @@
                 <input required type="text" name="penerbit_dokumen" id="AddDetailPenerbitDokumen" class="py-2 px-3 grow border-2 border-gray-500 rounded">
             </div>
             <div class="flex items-center">
-                <label for="AddDetailTahunTerbit" class="w-40 mr-2 leading-5">Tahun Terbit</label>
-                <input required type="number" min="1900" max="2099" name="tahun_terbit" id="AddDetailTahunTerbit" class="py-2 px-3 grow border-2 border-gray-500 rounded">
+                <label for="AddDetailTahunTerbitDokumen" class="w-40 mr-2 leading-5">Tahun Terbit Dokumen</label>
+                <input required type="number" min="1900" max="2099" name="tahun_terbit_dokumen" id="AddDetailTahunTerbit" class="py-2 px-3 grow border-2 border-gray-500 rounded">
             </div>
             <div class="flex items-center">
                 <label for="AddDetailStatusDigunakan" class="w-40 mr-2 leading-5">Status Digunakan</label>
@@ -148,8 +149,8 @@
                 <input required type="text" name="penerbit_dokumen" id="editDetailPenerbitDokumen" class="py-2 px-3 grow border-2 border-gray-500 rounded">
             </div>
             <div class="flex items-center">
-                <label for="editDetailTahunTerbit" class="w-40 mr-2 leading-5">Tahun Terbit</label>
-                <input required type="number" min="1900" max="2099" name="tahun_terbit" id="editDetailTahunTerbit" class="py-2 px-3 grow border-2 border-gray-500 rounded">
+                <label for="editDetailTahunTerbitDokumen" class="w-40 mr-2 leading-5">Tahun Terbit Dokumen</label>
+                <input required type="number" min="1900" max="2099" name="tahun_terbit_dokumen" id="editDetailTahunTerbit" class="py-2 px-3 grow border-2 border-gray-500 rounded">
             </div>
             <div class="flex items-center">
                 <label for="editDetailStatusDigunakan" class="w-40 mr-2 leading-5">Status Digunakan</label>
@@ -182,7 +183,8 @@
                     $columns += '<td>' + value + '</td>';
                 })
                 $tableDetail.append(`
-                <tr id="detailRow` + $i + `">` +
+                <tr id="detailRow` + $i + `">
+                    <td class="detailRowNumber"></td>` +
                     $columns +
                     `<td>
                         <button data-detail-edit="` + $i + `" type="button" class="text-blue-700 cursor-pointer">
@@ -199,6 +201,9 @@
                 </tr>`);
                 this.reset();
                 $modalFormDetail.attr('data-modal-visible', 'false');
+                $('.detailRowNumber').each(function(index, element) {
+                    element.innerHTML = (index + 1) + '.';
+                });
                 $i += 1;
             });
 
@@ -211,7 +216,7 @@
                 $editedId = $(this).attr('data-detail-edit');
                 let $columns = $(this).closest('tr').find('td');
                 let $formEditDetailInputs = $formEditDetail.find('input');
-                let $i = 0;
+                let $i = -1;
                 $columns.each(function() {
                     let $element = $(this);
                     // custom logic for other than input
@@ -237,7 +242,7 @@
                 event.preventDefault();
                 let $formData = new FormData(this);
                 let $detailRowColumns = $('#detailRow' + $editedId).find('td');
-                let $i = 0;
+                let $i = 1;
                 $formData.forEach((value, key) => {
                     $detailRowColumns[$i].innerText = value;
                     $finalFormData['details'][$editedId][key] = value;
@@ -262,6 +267,9 @@
                     if (result.isConfirmed) {
                         delete $finalFormData['details'][$deleteId]
                         $('#detailRow' + $deleteId).remove();
+                        $('.detailRowNumber').each(function(index, element) {
+                            element.innerHTML = (index + 1) + '.';
+                        });
                     }
                 });
             });
