@@ -15,7 +15,6 @@ class DaftarDokumenEksternalController extends Controller
 {
     public function index(Request $request)
     {
-        // dd($query->get()->toArray());
         if ($request->ajax()) {
             $query = FormDaftarDokumenEksternal::query();
             return DataTables::of($query)
@@ -47,9 +46,14 @@ class DaftarDokumenEksternalController extends Controller
         ]);
     }
 
-    public function show(Request $request)
+    public function show($encryptedId)
     {
-        return 'test';
+        $id = decrypt($encryptedId);
+        $data = FormDaftarDokumenEksternal::with('details')->find($id);
+        return view('01.04_show', [
+            'pageName' => '01.04 Daftar Dokumen Eksternal',
+            'data' => $data
+        ]);
     }
 
     public function create()
@@ -84,9 +88,10 @@ class DaftarDokumenEksternalController extends Controller
 
 
         // the insertion to database
-        if($errorMsg == ''){ // check if there is no error message
+        if ($errorMsg == '') { // check if there is no error message
             $modifiedParentArray = $request->only('no_rekaman_dokumen', 'nama_divisi', 'nama_document_control', 'nama_vice_president'); // make new array for parent insert
             $modifiedParentArray['created_by'] = Auth::id(); // add created_by field filled with logged in user id
+            $modifiedParentArray['updated_at'] = null; // prevent updated_at autofill
             $parentInsert = FormDaftarDokumenEksternal::create($modifiedParentArray); // the insert of the parent form
             $modifiedChildArray = []; // make new array for child form cz we need to add id_form for each
             foreach ($request->details as $value) {
@@ -95,7 +100,7 @@ class DaftarDokumenEksternalController extends Controller
             }
             DetailDaftarDokumenEksternal::insert($modifiedChildArray); // executing the batch insert to the child form
             return response()->json(['message' => $parentInsert->id], 200); // finnaly return success response
-        } 
+        }
         // if the above if statement failed return errors
         return response()->json(['errors' => $errorMsg], 422);
     }
