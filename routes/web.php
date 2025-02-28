@@ -8,8 +8,13 @@ use App\Http\Controllers\PengendalianDokumen\PerjanjianKerahasiaanController;
 use App\Http\Controllers\PengendalianDokumen\SerahterimaDokumenRekamanController;
 use App\Http\Controllers\PengendalianDokumen\SuratPernyataanKerahasiaanController;
 use App\Http\Controllers\PengendalianDokumen\UsulanPerubahanDokumenController;
+use App\Http\Controllers\KepatuhanPeraturan\FormDaftarPeraturanKeamananInformasiController;
+use App\Http\Controllers\KepatuhanPeraturan\FormDaftarPemenuhanPeraturanController;
+use App\Http\Controllers\KepatuhanPeraturan\FormDaftarDistribusiPeraturanController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\Authenticate;
+use App\Models\KepatuhanPeraturan\FormDaftarDistribusiPeraturan;
+use App\Models\KepatuhanPeraturan\FormDaftarPemenuhanPeraturan;
 use Illuminate\Support\Facades\Route;
 
 Route::get('', function () {
@@ -30,7 +35,7 @@ Route::prefix('pengendalian_dokumen')->name('01.')->middleware(Authenticate::cla
     Route::resource('pemusnahan_dokumen_rekaman', PemusnahanDokumenRekamanController::class, ['names' => '07']);
     Route::resource('surat_pernyataan_kerahasiaan', SuratPernyataanKerahasiaanController::class, ['names' => '08']);
     Route::resource('perjanjian_kerahasiaan', PerjanjianKerahasiaanController::class, ['names' => '09']);
-    Route::resource('laporan_pengkajian_dokumen_rekaman', LaporanPengkajianDokumenRekamanController::class, ['names' => '10']);
+    Route::resource('laporan_pengkajian_dokumen', LaporanPengkajianDokumenRekamanController::class, ['names' => '10']);
 });
 
 Route::prefix('permintaan_tindakan_koreksi')->name('02')->middleware(Authenticate::class)->group(function () {
@@ -107,4 +112,13 @@ Route::prefix('audit_internal')->name('03')->middleware(Authenticate::class)->gr
             ]);
         })->name('.index');
     });
+});
+
+//ini routenya juna
+
+Route::prefix('kepatuhan_peraturan')->name('05.')->middleware(Authenticate::class)->group(function () {
+    Route::resource('daftar_peraturan_keamanan_informasi', FormDaftarPeraturanKeamananInformasiController::class, ['names' => '01'])->parameter('daftar_peraturan_keamanan_informasi', 'id');
+    Route::resource('daftar_pemenuhan_peraturan', FormDaftarPemenuhanPeraturanController::class, ['names' => '02']);
+    Route::resource('daftar_distribusi_peraturan', FormDaftarDistribusiPeraturanController::class, ['names' => '03']);
+
 });
