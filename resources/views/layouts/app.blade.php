@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{{ $pageName }}</title>
-    @vite(['resources/css/app.css', 'resources/js/sidebar_handler.js', 'resources/js/app.js'])
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
 <body class="flex max-w-screen h-screen max-h-screen bg-gray-50 bg-cover bg-center" style="background-image: radial-gradient(rgba(255,255,255,0.92),rgba(255,255,255,0.92)), url({{ asset('images/hospital.jpg') }})">

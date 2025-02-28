@@ -11,6 +11,16 @@ use App\Http\Controllers\PengendalianDokumen\UsulanPerubahanDokumenController;
 use App\Http\Controllers\KepatuhanPeraturan\FormDaftarPeraturanKeamananInformasiController;
 use App\Http\Controllers\KepatuhanPeraturan\FormDaftarPemenuhanPeraturanController;
 use App\Http\Controllers\KepatuhanPeraturan\FormDaftarDistribusiPeraturanController;
+use App\Http\Controllers\PermintaanTindakanKoreksi\formPermintaanTindakanKoreksiController;
+use App\Http\Controllers\PermintaanTindakanKoreksi\formPenyelesaianPtkBermasalahController;
+use App\Http\Controllers\PermintaanTindakanKoreksi\formDaftarStatusPtkController;
+use App\Http\Controllers\AuditInternal\formDaftarAuditInternalController;
+use App\Http\Controllers\AuditInternal\formChecklistAuditInternalController;
+use App\Http\Controllers\AuditInternal\formJadwalDetailAuditInternalController;
+use App\Http\Controllers\AuditInternal\formJadwalTahunanAuditInternalController;
+use App\Http\Controllers\AuditInternal\formLaporanAuditInternalController;
+use App\Http\Controllers\AuditInternal\formPtkAuditInternalController;
+use App\Http\Controllers\AuditInternal\formStatusTemuanAuditInternalController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\Authenticate;
 use App\Models\KepatuhanPeraturan\FormDaftarDistribusiPeraturan;
@@ -28,6 +38,7 @@ Route::prefix('auth')->name('auth.')->group(function () {
 
 Route::resource('user', UserController::class)->middleware(Authenticate::class);
 
+// umar
 Route::prefix('pengendalian_dokumen')->name('01.')->middleware(Authenticate::class)->group(function () {
     Route::resource('daftar_dokumen_eksternal', DaftarDokumenEksternalController::class, ['names' => '04']);
     Route::resource('serah_terima_dokumen_rekaman', SerahterimaDokumenRekamanController::class, ['names' => '05']);
@@ -37,88 +48,31 @@ Route::prefix('pengendalian_dokumen')->name('01.')->middleware(Authenticate::cla
     Route::resource('perjanjian_kerahasiaan', PerjanjianKerahasiaanController::class, ['names' => '09']);
     Route::resource('laporan_pengkajian_dokumen', LaporanPengkajianDokumenRekamanController::class, ['names' => '10']);
 });
+// // umar
 
-Route::prefix('permintaan_tindakan_koreksi')->name('02')->middleware(Authenticate::class)->group(function () {
-    Route::prefix('form_permintaan_tindakan_koreksi')->name('.01')->group(function () {
-        Route::get('/', function () {
-            return view('02.01_form_permintaan_tindakan_koreksi', [
-                'pageName' => '02.01 Permintaan Tindakan Koreksi'
-            ]);
-        })->name('.index');
-    });
-    Route::prefix('form_daftar_status_ptk')->name('.02')->group(function () {
-        Route::get('/', function () {
-            return view('02.02_form_daftar_status_ptk', [
-                'pageName' => '02.02 Daftar Status PTK'
-            ]);
-        })->name('.index');
-    });
-    Route::prefix('form_penyelesaian_ptk_bermasalah')->name('.03')->group(function () {
-        Route::get('/', function () {
-            return view('02.03_form_penyelesaian_ptk_bermasalah', [
-                'pageName' => '02.03 Penyelesaian PTK Bermasalah'
-            ]);
-        })->name('.index');
-    });
+// adi
+Route::prefix('permintaan_tindakan_koreksi')->name('02.')->middleware(Authenticate::class)->group(function () {
+    Route::resource('permintaan_tindakan_koreksi', formPermintaanTindakanKoreksiController::class, ['names' => '01']);
+    Route::resource('daftar_status_ptk', formDaftarStatusPtkController::class, ['names' => '02']);
+    Route::resource('penyelesaian_ptk_bermasalah', formPenyelesaianPtkBermasalahController::class, ['names' => '03']);
 });
 
-Route::prefix('audit_internal')->name('03')->middleware(Authenticate::class)->group(function () {
-    Route::prefix('form_daftar_audit_internal')->name('.01')->group(function () {
-        Route::get('/', function () {
-            return view('03.01_form_daftar_audit_internal', [
-                'pageName' => '03.01 Daftar Audit Internal'
-            ]);
-        })->name('.index');
-    });
-    Route::prefix('form_ptk_audit_internal')->name('.02')->group(function () {
-        Route::get('/', function () {
-            return view('03.02_form_ptk_audit_internal', [
-                'pageName' => '03.02 PTK Audit Internal'
-            ]);
-        })->name('.index');
-    });
-    Route::prefix('form_jadwal_tahunan_audit_internal')->name('.03')->group(function () {
-        Route::get('/', function () {
-            return view('03.03_form_jadwal_tahunan_audit_internal', [
-                'pageName' => '03.03 Jadwal Tahunan Audit Internal'
-            ]);
-        })->name('.index');
-    });
-    Route::prefix('form_jadwal_detail_audit_internal')->name('.04')->group(function () {
-        Route::get('/', function () {
-            return view('03.04_form_jadwal_detail_audit_internal', [
-                'pageName' => '03.04 Jadwal Detail Audit Internal'
-            ]);
-        })->name('.index');
-    });
-    Route::prefix('form_checklist_audit_internal')->name('.05')->group(function () {
-        Route::get('/', function () {
-            return view('03.05_form_checklist_audit_internal', [
-                'pageName' => '03.05 Checklist Audit Internal'
-            ]);
-        })->name('.index');
-    });
-    Route::prefix('form_laporan_audit_internal')->name('.06')->group(function () {
-        Route::get('/', function () {
-            return view('03.06_form_laporan_audit_internal', [
-                'pageName' => '03.06 Laporan Audit Internal'
-            ]);
-        })->name('.index');
-    });
-    Route::prefix('form_status_temuan_audit_internal')->name('.07')->group(function () {
-        Route::get('/', function () {
-            return view('03.07_form_status_temuan_audit_internal', [
-                'pageName' => '03.07 Status Temuan Audit Internal'
-            ]);
-        })->name('.index');
-    });
+Route::prefix('audit_internal')->name('03.')->middleware(Authenticate::class)->group(function () {
+    Route::resource('daftar_audit_internal', formDaftarAuditInternalController::class, ['names' => '01']);
+    Route::resource('ptk_audit_internal', formPtkAuditInternalController::class, ['names' => '02']);
+    Route::resource('jadwal_tahunan_audit_internal', formJadwalTahunanAuditInternalController::class, ['names' => '03']);
+    Route::resource('jadwal_detail_audit_internal', formJadwalDetailAuditInternalController::class, ['names' => '04']);
+    Route::resource('checklist_audit_internal', formChecklistAuditInternalController::class, ['names' => '05']);
+    Route::resource('laporan_audit_internal', formLaporanAuditInternalController::class, ['names' => '06']);
+    Route::resource('status_temuan_audit_internal', formStatusTemuanAuditInternalController::class, ['names' => '07']);
 });
+// // adi
 
-//ini routenya juna
-
+//juna
 Route::prefix('kepatuhan_peraturan')->name('05.')->middleware(Authenticate::class)->group(function () {
     Route::resource('daftar_peraturan_keamanan_informasi', FormDaftarPeraturanKeamananInformasiController::class, ['names' => '01'])->parameter('daftar_peraturan_keamanan_informasi', 'id');
     Route::resource('daftar_pemenuhan_peraturan', FormDaftarPemenuhanPeraturanController::class, ['names' => '02']);
     Route::resource('daftar_distribusi_peraturan', FormDaftarDistribusiPeraturanController::class, ['names' => '03']);
 
 });
+// // juna

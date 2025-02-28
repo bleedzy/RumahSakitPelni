@@ -4,6 +4,7 @@ namespace App\Models\PermintaanTindakanKoreksi;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\User;
 
 class formPenyelesaianPtkBermasalah extends Model
 {
@@ -17,9 +18,12 @@ class formPenyelesaianPtkBermasalah extends Model
         'detail_penyelesaian_kasus',
         'nama_ciso',
         'nama_direktur_utama',
-        'is_signed',
         'signed_at',
         'document_scan',
         'created_by'
     ];
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'created_by');
+    }
 }
