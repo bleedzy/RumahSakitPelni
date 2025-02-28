@@ -23,6 +23,7 @@ Route::prefix('auth')->name('auth.')->group(function () {
 
 Route::resource('user', UserController::class)->middleware(Authenticate::class);
 
+// umar
 Route::prefix('pengendalian_dokumen')->name('01.')->middleware(Authenticate::class)->group(function () {
     Route::resource('daftar_dokumen_eksternal', DaftarDokumenEksternalController::class, ['names' => '04']);
     Route::resource('serah_terima_dokumen_rekaman', SerahterimaDokumenRekamanController::class, ['names' => '05']);
@@ -30,8 +31,9 @@ Route::prefix('pengendalian_dokumen')->name('01.')->middleware(Authenticate::cla
     Route::resource('pemusnahan_dokumen_rekaman', PemusnahanDokumenRekamanController::class, ['names' => '07']);
     Route::resource('surat_pernyataan_kerahasiaan', SuratPernyataanKerahasiaanController::class, ['names' => '08']);
     Route::resource('perjanjian_kerahasiaan', PerjanjianKerahasiaanController::class, ['names' => '09']);
-    Route::resource('laporan_pengkajian_dokumen_rekaman', LaporanPengkajianDokumenRekamanController::class, ['names' => '10']);
+    Route::resource('laporan_pengkajian_dokumen_rekaman', LaporanPengkajianDokumenRekamanController::class, ['names' => '10'])->parameters(['laporan_pengkajian_dokumen_rekaman' => 'laporan']);
 });
+// // umar
 
 Route::prefix('permintaan_tindakan_koreksi')->name('02')->middleware(Authenticate::class)->group(function () {
     Route::prefix('form_permintaan_tindakan_koreksi')->name('.01')->group(function () {

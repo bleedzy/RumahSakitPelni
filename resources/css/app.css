@@ -3,6 +3,7 @@
 @import "./Montserrat.css";
 @import "./sidebar.css";
 @import "./table-style.css";
+@import "./modal.css";
 @source "../views";
 
 html {

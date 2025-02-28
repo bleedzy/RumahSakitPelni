@@ -5,6 +5,8 @@ namespace App\Http\Controllers\PengendalianDokumen;
 use App\Http\Controllers\Controller;
 use App\Models\PengendalianDokumen\FormDaftarDokumenEksternal;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Validator;
 use Yajra\DataTables\Facades\DataTables;
 
 class DaftarDokumenEksternalController extends Controller
@@ -48,23 +50,42 @@ class DaftarDokumenEksternalController extends Controller
         return 'test';
     }
 
-    public function create(){
+    public function create()
+    {
         return view('01.04_create', [
             'pageName' => '01.04 Daftar Dokumen Eksternal'
         ]);
     }
 
-    public function store(Request $id){
+    public function store(Request $request)
+    {
+        $errorMsg = '';
 
+        $parentValidator = Validator::make($request->all(), [
+            'no_rekaman_dokumen' => 'required|unique:form_daftar_dokumen_eksternals,no_rekaman_dokumen',
+            'nama_divisi' => 'required',
+            'nama_document_control' => 'required',
+            'nama_vice_president' => 'required'
+        ]);
+        $errorMsg .= $parentValidator->fails() ? implode('<br>', $parentValidator->errors()->all()) . '<br>' : '';
+
+        $childValidationRule = [
+            'tanggal' => 'required',
+            'no_dokumen' => 'required',
+            'nama_dokumen' => 'required',
+            'klasifikasi_dokumenn' => 'required',
+            'penerbit_dokumen' => 'required',
+            'tahun_terbit' => 'required',
+            'status_digunakan' => 'required'
+        ];
+        $errorMsg .= multiRowFormValidationHelper($request->details, $childValidationRule, 'Dokumen Eksternal');
+
+        return response()->json(['errors' => $errorMsg], 422);
     }
 
-    public function edit($id){
+    public function edit($id) {}
 
-    }
-
-    public function update($id){
-
-    }
+    public function update($id) {}
 
     public function destroy($id)
     {

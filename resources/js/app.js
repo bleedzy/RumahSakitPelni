@@ -5,6 +5,8 @@ import 'datatables.net';
 import 'datatables.net-responsive';
 import Swal from 'sweetalert2';
 window.Swal = Swal;
+import './sidebar_handler';
+import './modal';
 
 $(() => {
     setTimeout(() => {

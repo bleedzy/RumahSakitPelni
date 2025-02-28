@@ -12,7 +12,7 @@
             let $table = $('#DataTable');
             // specified the column of your table
             let $column = [{
-                    data: 'no_rekaman_dokumen',
+                    data:    'no_rekaman_dokumen',
                 },
                 {
                     data: 'nama_divisi'

@@ -1,0 +1,59 @@
+@keyframes opacity-anim {
+    from {
+        opacity: 0;
+    }
+}
+
+@keyframes delay-dnone {
+    from {
+        display: grid;
+    }
+}
+
+@keyframes anim-scale {
+    0% {
+        scale: 0.7;
+    }
+
+    45% {
+        scale: 1.1;
+    }
+
+    80% {
+        scale: 0.9;
+    }
+
+    100% {
+        scale: 1;
+    }
+}
+
+[data-modal-visible] {
+    opacity: 0;
+    display: grid;
+    transition: all 300ms;
+    animation: delay-dnone 500ms;
+}
+
+[data-modal-visible="false"] {
+    display: none;
+}
+
+[data-modal-visible="true"] {
+    display: grid;
+    opacity: 1;
+    animation: opacity-anim 200ms;
+}
+
+[data-modal-visible]>* {
+    transition: all 200ms;
+}
+
+[data-modal-visible="false"]>* {
+    scale: 0;
+}
+
+[data-modal-visible="true"]>* {
+    scale: 1;
+    animation: anim-scale 200ms;
+}
