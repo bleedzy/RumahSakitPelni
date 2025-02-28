@@ -4,7 +4,7 @@ namespace App\Models\PermintaanTindakanKoreksi;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
+use app\Models\User;
 class formPermintaanTindakanKoreksi extends Model
 {
     use HasFactory;
@@ -29,9 +29,12 @@ class formPermintaanTindakanKoreksi extends Model
         'no_ptk_baru',
         'nama_verifier',
         'tanggal_verifikasi',
-        'is_signed',
         'signed_at',
         'document_scan',
         'created_by'
     ];
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'created_by');
+    }
 }
