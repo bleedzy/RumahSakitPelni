@@ -41,6 +41,7 @@ Route::resource('user', UserController::class)->middleware(Authenticate::class);
 // umar
 Route::prefix('pengendalian_dokumen')->name('01.')->middleware(Authenticate::class)->group(function () {
     Route::resource('daftar_dokumen_eksternal', DaftarDokumenEksternalController::class, ['names' => '04']);
+    Route::get('{id}/print', [DaftarDokumenEksternalController::class, 'print'])->name('04.print');
     Route::resource('serah_terima_dokumen_rekaman', SerahterimaDokumenRekamanController::class, ['names' => '05']);
     Route::resource('usulan_perubahan_dokumen', UsulanPerubahanDokumenController::class, ['names' => '06']);
     Route::resource('pemusnahan_dokumen_rekaman', PemusnahanDokumenRekamanController::class, ['names' => '07']);

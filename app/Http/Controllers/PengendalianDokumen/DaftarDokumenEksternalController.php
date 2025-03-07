@@ -49,8 +49,17 @@ class DaftarDokumenEksternalController extends Controller
     public function show($encryptedId)
     {
         $id = decrypt($encryptedId);
-        $data = FormDaftarDokumenEksternal::with('details')->find($id);
+        $data = FormDaftarDokumenEksternal::with('details', 'createdBy', 'updatedBy')->find($id);
         return view('01.04_show', [
+            'pageName' => '01.04 Daftar Dokumen Eksternal',
+            'data' => $data
+        ]);
+    }
+
+    public function print($encryptedId){
+        $id = decrypt($encryptedId);
+        $data = FormDaftarDokumenEksternal::with('details', 'createdBy', 'updatedBy')->find($id);
+        return view('01.04_print', [
             'pageName' => '01.04 Daftar Dokumen Eksternal',
             'data' => $data
         ]);
@@ -105,13 +114,13 @@ class DaftarDokumenEksternalController extends Controller
         return response()->json(['errors' => $errorMsg], 422);
     }
 
-    public function edit($id) {}
+    public function edit($encryptedId) {}
 
-    public function update($id) {}
+    public function update($encryptedId) {}
 
-    public function destroy($id)
+    public function destroy($encryptedId)
     {
-        FormDaftarDokumenEksternal::destroy(decrypt($id));
+        FormDaftarDokumenEksternal::destroy(decrypt($encryptedId));
         return response()->json([], 200);
     }
 }

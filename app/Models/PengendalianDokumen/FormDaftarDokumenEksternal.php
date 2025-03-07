@@ -25,6 +25,10 @@ class FormDaftarDokumenEksternal extends Model
         return $this->belongsTo(User::class, 'created_by');
     }
 
+    public function updatedBy () {
+        return $this->belongsTo(User::class, 'updated_by');
+    }
+
     public function details () {
         return $this->hasMany(DetailDaftarDokumenEksternal::class, 'id_form');
     }
