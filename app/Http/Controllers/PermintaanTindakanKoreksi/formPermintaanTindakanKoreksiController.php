@@ -46,4 +46,16 @@ class formPermintaanTindakanKoreksiController extends Controller
             'pageName' => '02.01 Permintaan Tindakan Koreksi'
         ]);
     }
+    public function create()
+    {
+        return view('02.01_create', [
+            'pageName' => '02.01 Permintaan Tindakan Koreksi'
+        ]);
+    }
+    public function destroy($id)
+    {
+        dd($id);
+        formPermintaanTindakanKoreksi::find($id)->delete();
+        return response()->json([], 200);
+    }
 }
