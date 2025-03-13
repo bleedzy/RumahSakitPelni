@@ -3,7 +3,7 @@
     <x-side-bar pageName="{{ $pageName }}"></x-side-bar>
 @endsection
 @section('header')
-    <h1 class="font-bold text-3xl line-clamp-2">01.04 Daftar Dokumen Eksternal</h1>
+    <h1 class="font-bold text-3xl line-clamp-2">{{ $pageName }}</h1>
 @endsection
 @section('content')
     <div class="px-8 py-2">
@@ -32,33 +32,38 @@
                 <label for="inputNamaVicePresident" class="w-40 mr-2 leading-5">Nama Vice President</label>
                 <input required type="text" name="nama_vice_president" id="inputNamaVicePresident" class="py-2 px-3 grow border-2 border-gray-500 rounded">
             </div>
-            <style>
-                .table-style td {
-                    text-wrap: nowrap;
-                }
-            </style>
         </form>
         {{-- detail table --}}
         <div class="mt-2">Daftar Dokumen Eksternal:</div>
         <div class="overflow-x-scroll border-2 border-b-2 rounded bg-white">
-            {{-- to make keterangan column not to long --}}
             <style>
-                .table-style td:nth-child(8) {
+                .table-style td {
+                    text-wrap: nowrap;
+                }
+
+                .table-style td:nth-child(9)>div {
+                    /* to make keterangan column (9th column) not to long */
+                    width: max-content;
                     max-width: 300px;
-                    line-clamp: 2;
+                    text-wrap: wrap;
                     overflow: hidden;
+                    display: -webkit-box;
+                    margin-bottom: 0px;
+                    -webkit-box-orient: vertical;
+                    -webkit-line-clamp: 2;
                     text-overflow: ellipsis;
                 }
             </style>
             <table id="tableDetail" class="table-style">
                 <thead>
                     <tr>
+                        <th>#</th>
                         <th>Tanggal</th>
                         <th>No Dokumen</th>
                         <th class="text-nowrap">Nama Dokumen</th>
                         <th>Klasifikasi Dokumen</th>
                         <th>Penerbit Dokumen</th>
-                        <th>Tahun Terbit</th>
+                        <th>Tahun Terbit Dokumen</th>
                         <th>Status Digunakan</th>
                         <th>Keterangan</th>
                         <th>Action</th>
@@ -68,7 +73,7 @@
                 </tbody>
                 <tfoot>
                     <tr>
-                        <th colspan="9" class="text-start font-normal"><button type="button" data-modal-toggle="modalFormAddDetail" class="px-4 py-1 rounded bg-blue-500 hover:bg-blue-700 text-white cursor-pointer">Add Row</button></th>
+                        <th colspan="10" class="text-start font-normal"><button type="button" data-modal-toggle="modalFormAddDetail" class="px-4 py-1 rounded bg-blue-500 hover:bg-blue-700 text-white cursor-pointer">Add Row</button></th>
                     </tr>
                 </tfoot>
             </table>
@@ -107,8 +112,8 @@
                 <input required type="text" name="penerbit_dokumen" id="AddDetailPenerbitDokumen" class="py-2 px-3 grow border-2 border-gray-500 rounded">
             </div>
             <div class="flex items-center">
-                <label for="AddDetailTahunTerbit" class="w-40 mr-2 leading-5">Tahun Terbit</label>
-                <input required type="number" min="1900" max="2099" name="tahun_terbit" id="AddDetailTahunTerbit" class="py-2 px-3 grow border-2 border-gray-500 rounded">
+                <label for="AddDetailTahunTerbitDokumen" class="w-40 mr-2 leading-5">Tahun Terbit Dokumen</label>
+                <input required type="number" min="1900" max="2099" name="tahun_terbit_dokumen" id="AddDetailTahunTerbit" class="py-2 px-3 grow border-2 border-gray-500 rounded">
             </div>
             <div class="flex items-center">
                 <label for="AddDetailStatusDigunakan" class="w-40 mr-2 leading-5">Status Digunakan</label>
@@ -148,8 +153,8 @@
                 <input required type="text" name="penerbit_dokumen" id="editDetailPenerbitDokumen" class="py-2 px-3 grow border-2 border-gray-500 rounded">
             </div>
             <div class="flex items-center">
-                <label for="editDetailTahunTerbit" class="w-40 mr-2 leading-5">Tahun Terbit</label>
-                <input required type="number" min="1900" max="2099" name="tahun_terbit" id="editDetailTahunTerbit" class="py-2 px-3 grow border-2 border-gray-500 rounded">
+                <label for="editDetailTahunTerbitDokumen" class="w-40 mr-2 leading-5">Tahun Terbit Dokumen</label>
+                <input required type="number" min="1900" max="2099" name="tahun_terbit_dokumen" id="editDetailTahunTerbit" class="py-2 px-3 grow border-2 border-gray-500 rounded">
             </div>
             <div class="flex items-center">
                 <label for="editDetailStatusDigunakan" class="w-40 mr-2 leading-5">Status Digunakan</label>
@@ -179,10 +184,11 @@
                 $finalFormData['details'][$i] = {};
                 $formData.forEach((value, key) => {
                     $finalFormData['details'][$i][key] = value;
-                    $columns += '<td>' + value + '</td>';
+                    $columns += '<td><div>' + value + '</div></td>';
                 })
                 $tableDetail.append(`
-                <tr id="detailRow` + $i + `">` +
+                <tr id="detailRow` + $i + `">
+                    <td class="detailRowNumber"></td>` +
                     $columns +
                     `<td>
                         <button data-detail-edit="` + $i + `" type="button" class="text-blue-700 cursor-pointer">
@@ -199,6 +205,9 @@
                 </tr>`);
                 this.reset();
                 $modalFormDetail.attr('data-modal-visible', 'false');
+                $('.detailRowNumber').each(function(index, element) {
+                    element.innerHTML = (index + 1) + '.';
+                });
                 $i += 1;
             });
 
@@ -211,7 +220,7 @@
                 $editedId = $(this).attr('data-detail-edit');
                 let $columns = $(this).closest('tr').find('td');
                 let $formEditDetailInputs = $formEditDetail.find('input');
-                let $i = 0;
+                let $i = -1;
                 $columns.each(function() {
                     let $element = $(this);
                     // custom logic for other than input
@@ -237,9 +246,9 @@
                 event.preventDefault();
                 let $formData = new FormData(this);
                 let $detailRowColumns = $('#detailRow' + $editedId).find('td');
-                let $i = 0;
+                let $i = 1;
                 $formData.forEach((value, key) => {
-                    $detailRowColumns[$i].innerText = value;
+                    $detailRowColumns[$i].innerText = '<div>' + value + '</div>';
                     $finalFormData['details'][$editedId][key] = value;
                     $i++;
                 });
@@ -262,6 +271,9 @@
                     if (result.isConfirmed) {
                         delete $finalFormData['details'][$deleteId]
                         $('#detailRow' + $deleteId).remove();
+                        $('.detailRowNumber').each(function(index, element) {
+                            element.innerHTML = (index + 1) + '.';
+                        });
                     }
                 });
             });

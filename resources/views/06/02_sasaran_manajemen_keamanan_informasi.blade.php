@@ -3,7 +3,7 @@
     <x-side-bar pageName="{{ $pageName }}"></x-side-bar>
 @endsection
 @section('header')
-    <h1 class="font-bold text-3xl line-clamp-2">{{ $pageName }}</h1>
+    <h1 class="font-bold text-3xl line-clamp-2">06.02 Sasaran Manajemen Keamanan Informasi</h1>
 @endsection
 @section('content')
     <script type="module">
@@ -12,7 +12,7 @@
             let $table = $('#DataTable');
             // specified the column of your table
             let $column = [{
-                    data: 'no_rekaman_dokumen',
+                    data:    'tujuan',
                 },
                 {
                     data: 'nama_divisi'
@@ -34,14 +34,12 @@
             // initiate DataTable
             $table = $table.DataTable({
                 serverSide: true,
-                ajax: "", // why is it empty you ask?. Cz in the controller loading this .blade.php view and handling the dataTable ajax is done by the same method/function. Soo the url is the same, which is what empty url is.
-                order: [[0, 'desc']], // default order is desc order by column 0 (hidden id column), this will order it from newest data (biggest id) to oldest data (smallest id)
-                stateSave: true,
-                stateDuration: 0,
+                ajax: '{{ route('01.04.index') }}',
+                deferLoading: false,
                 columns: [{
-                    data: "id", // there this is the hidden id column
-                    visible: false // this is how you hide it
-                }].concat($column.concat([{ // cz I separated the visible column to that $column above (for ease of access ig) I need to concat it with id column, action column etc etc.
+                    data: "id",
+                    visible: false
+                }].concat($column.concat([{
                     data: "action",
                     searchable: false,
                     orderable: false
@@ -67,7 +65,7 @@
             $('#sortOldest').on('click', function() {
                 $table.order(0, 'asc').draw();
             });
-            $table.on('init.dt order.dt', function() {
+            $table.on('order.dt', function() {
                 var $order = $table.order();
                 var $column = $order[0][0];
                 var $direction = $order[0][1];
@@ -85,6 +83,8 @@
                 }
             });
 
+            // draw the table
+            $table.order(0, 'desc').draw();
 
             // delete function
             $table.on('click', '[data-delete-id]', function() {
@@ -160,7 +160,7 @@
             <table id="DataTable" class="row-border">
                 <thead>
                     <tr>
-                        <th></th>
+                        <th>tujuan</th>
                         <th>No Rekaman</th>
                         <th>Nama Divisi</th>
                         <th>Nama Document Control</th>

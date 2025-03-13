@@ -21,10 +21,13 @@ use App\Http\Controllers\AuditInternal\formJadwalTahunanAuditInternalController;
 use App\Http\Controllers\AuditInternal\formLaporanAuditInternalController;
 use App\Http\Controllers\AuditInternal\formPtkAuditInternalController;
 use App\Http\Controllers\AuditInternal\formStatusTemuanAuditInternalController;
+use App\Http\Controllers\ManajemenResiko\SasaranManajemenKeamananInformasi;
+use App\Http\Controllers\ManajemenResiko\SasaranManajemenKeamananInformasiController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\Authenticate;
 use App\Models\KepatuhanPeraturan\FormDaftarDistribusiPeraturan;
 use App\Models\KepatuhanPeraturan\FormDaftarPemenuhanPeraturan;
+use App\Models\ManajemenResiko\SasaranManajemenKeamananInformasi as ManajemenResikoSasaranManajemenKeamananInformasi;
 use Illuminate\Support\Facades\Route;
 
 Route::get('', function () {
@@ -41,6 +44,7 @@ Route::resource('user', UserController::class)->middleware(Authenticate::class);
 // umar
 Route::prefix('pengendalian_dokumen')->name('01.')->middleware(Authenticate::class)->group(function () {
     Route::resource('daftar_dokumen_eksternal', DaftarDokumenEksternalController::class, ['names' => '04']);
+    Route::get('{id}/print', [DaftarDokumenEksternalController::class, 'print'])->name('04.print');
     Route::resource('serah_terima_dokumen_rekaman', SerahterimaDokumenRekamanController::class, ['names' => '05']);
     Route::resource('usulan_perubahan_dokumen', UsulanPerubahanDokumenController::class, ['names' => '06']);
     Route::resource('pemusnahan_dokumen_rekaman', PemusnahanDokumenRekamanController::class, ['names' => '07']);
@@ -73,6 +77,9 @@ Route::prefix('kepatuhan_peraturan')->name('05.')->middleware(Authenticate::clas
     Route::resource('daftar_peraturan_keamanan_informasi', FormDaftarPeraturanKeamananInformasiController::class, ['names' => '01'])->parameter('daftar_peraturan_keamanan_informasi', 'id');
     Route::resource('daftar_pemenuhan_peraturan', FormDaftarPemenuhanPeraturanController::class, ['names' => '02']);
     Route::resource('daftar_distribusi_peraturan', FormDaftarDistribusiPeraturanController::class, ['names' => '03']);
-
 });
 // // juna
+Route::prefix('manajemen_resiko')->name('06.')->middleware(Authenticate::class)->group(function () {
+    // Route::resource('risk_register', RiskRegister::class, ['names' => '01']);
+    Route::resource('sasaran_manajemen_keamanan_informasi', SasaranManajemenKeamananInformasiController::class, ['names' => '02']);
+});

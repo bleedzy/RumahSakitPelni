@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\PengendalianDokumen;
 
 use App\Http\Controllers\Controller;
+use App\Models\PengendalianDokumen\DetailDaftarDokumenEksternal;
 use App\Models\PengendalianDokumen\FormDaftarDokumenEksternal;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 use Yajra\DataTables\Facades\DataTables;
@@ -13,7 +15,6 @@ class DaftarDokumenEksternalController extends Controller
 {
     public function index(Request $request)
     {
-        // dd($query->get()->toArray());
         if ($request->ajax()) {
             $query = FormDaftarDokumenEksternal::query();
             return DataTables::of($query)
@@ -45,9 +46,23 @@ class DaftarDokumenEksternalController extends Controller
         ]);
     }
 
-    public function show(Request $request)
+    public function show($encryptedId)
     {
-        return 'test';
+        $id = decrypt($encryptedId);
+        $data = FormDaftarDokumenEksternal::with('details', 'createdBy', 'updatedBy')->find($id);
+        return view('01.04_show', [
+            'pageName' => '01.04 Daftar Dokumen Eksternal',
+            'data' => $data
+        ]);
+    }
+
+    public function print($encryptedId){
+        $id = decrypt($encryptedId);
+        $data = FormDaftarDokumenEksternal::with('details', 'createdBy', 'updatedBy')->find($id);
+        return view('01.04_print', [
+            'pageName' => '01.04 Daftar Dokumen Eksternal',
+            'data' => $data
+        ]);
     }
 
     public function create()
@@ -73,23 +88,39 @@ class DaftarDokumenEksternalController extends Controller
             'tanggal' => 'required',
             'no_dokumen' => 'required',
             'nama_dokumen' => 'required',
-            'klasifikasi_dokumenn' => 'required',
+            'klasifikasi_dokumen' => 'required',
             'penerbit_dokumen' => 'required',
-            'tahun_terbit' => 'required',
+            'tahun_terbit_dokumen' => 'required',
             'status_digunakan' => 'required'
         ];
         $errorMsg .= multiRowFormValidationHelper($request->details, $childValidationRule, 'Dokumen Eksternal');
 
+
+        // the insertion to database
+        if ($errorMsg == '') { // check if there is no error message
+            $modifiedParentArray = $request->only('no_rekaman_dokumen', 'nama_divisi', 'nama_document_control', 'nama_vice_president'); // make new array for parent insert
+            $modifiedParentArray['created_by'] = Auth::id(); // add created_by field filled with logged in user id
+            $modifiedParentArray['updated_at'] = null; // prevent updated_at autofill
+            $parentInsert = FormDaftarDokumenEksternal::create($modifiedParentArray); // the insert of the parent form
+            $modifiedChildArray = []; // make new array for child form cz we need to add id_form for each
+            foreach ($request->details as $value) {
+                $value['id_form'] = $parentInsert->id; // add id_form field filled with id of previously inserted parent form
+                array_push($modifiedChildArray, $value); // push to the child form new array
+            }
+            DetailDaftarDokumenEksternal::insert($modifiedChildArray); // executing the batch insert to the child form
+            return response()->json(['message' => $parentInsert->id], 200); // finnaly return success response
+        }
+        // if the above if statement failed return errors
         return response()->json(['errors' => $errorMsg], 422);
     }
 
-    public function edit($id) {}
+    public function edit($encryptedId) {}
 
-    public function update($id) {}
+    public function update($encryptedId) {}
 
-    public function destroy($id)
+    public function destroy($encryptedId)
     {
-        FormDaftarDokumenEksternal::destroy(decrypt($id));
+        FormDaftarDokumenEksternal::destroy(decrypt($encryptedId));
         return response()->json([], 200);
     }
 }
